@@ -5,6 +5,12 @@ REM Ajout du script au dossier de démarrage
 set "startup_folder=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
 copy "%~f0" "%startup_folder%"
 
+REM Création du script VBScript
+echo Set objArgs = WScript.Arguments > MessageBox.vbs
+echo strMessage = objArgs(0) >> MessageBox.vbs
+echo strTitle = objArgs(1) >> MessageBox.vbs
+echo MsgBox strMessage, vbOKOnly, strTitle >> MessageBox.vbs
+
 REM Liste des messages
 set messages[1]="Vous vous demandez pourquoi vous êtes ici? Moi aussi!"
 set messages[2]="Avez-vous déjà remarqué à quel point les chaussettes disparaissent mystérieusement dans la machine à laver?"
@@ -17,14 +23,12 @@ set messages[8]="Le saviez-vous? 98% des statistiques sont inventées sur le mom
 set messages[9]="J'ai essayé de prendre une journée de repos. Maintenant, j'ai besoin de deux jours de repos pour me remettre de ma journée de repos."
 set messages[10]="Pourquoi ne faut-il jamais jouer aux cache-cache avec des montres? Parce que, à un moment donné, elles vont se cacher et vous ne pourrez plus les retrouver!"
 
-REM Fonction pour afficher un message aléatoire à un emplacement aléatoire
+REM Fonction pour afficher un message aléatoire dans une boîte de dialogue OK
 :showMessage
-set /a "posX=%RANDOM% %% 80 + 1"
-set /a "posY=%RANDOM% %% 20 + 1"
-set "messageIndex=%RANDOM% %% 10 + 1"
-echo %messages[%messageIndex%]%
+set /a "messageIndex=%RANDOM% %% 10 + 1"
 set "msg=%messages[%messageIndex%]%"
-msg * /time:3 /w /v /title "Message Amusant" "%msg%" /position:%posX%,%posY%
+echo %msg%
+cscript //nologo MessageBox.vbs "%msg%" "Messages Amusants"
 goto :eof
 
 REM Boucle pour afficher les messages jusqu'à ce que l'utilisateur ferme toutes les fenêtres
