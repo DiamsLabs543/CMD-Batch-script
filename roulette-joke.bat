@@ -8,6 +8,7 @@ REM Configuration
 set "chances=6"
 
 :game_loop
+cls
 REM Affichage de l'interface
 echo.
 echo ####################################
@@ -35,7 +36,6 @@ if %bullet% equ 0 set "result=Tu es mort ! (X_x)"
 echo %result%
 
 REM Rejouer
-cls
 goto :game_loop
 
 REM Fin du jeu
