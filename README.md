@@ -9,5 +9,7 @@ BSOD.bat est juste une blague...
 
 msg-dem.bat execute à chaque démarage un script qui dit des bêtises.
 
+extract .bat extrait tout les fichiers de tout les dossiers du repertoire courrant vers un nouveau dossier nomme destination.
+
 bad-joke.bat est le pire script blagueur...
 # Bon amusement et soyez prudents !
